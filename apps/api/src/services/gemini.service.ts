@@ -29,7 +29,6 @@ export default class GeminiService {
   
     
     const model = this.genAI.getGenerativeModel({ model: "embedding-001" });
-    // const model = this.genAI.getGenerativeModel({ model: "" });
     const chunkText = await this.chunkText(data);
     const result = [] as { embedding: number[]; content: string }[];
     for (const chunk of chunkText) {

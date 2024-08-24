@@ -12,12 +12,15 @@ const env = {
   GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID!,
   GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET!,
   GOOGLE_REDIRECT_URL: process.env.GOOGLE_REDIRECT_URI!,
+  WATSONX_PROJECT_ID: process.env.WATSONX_PROJECT_ID!,
+  WATSONX_URL: process.env.WATSONX_URL!,
   TG: {
     BOT_TOKEN: process.env.TG_BOT_TOKEN!,
     WH_URL: process.env.TG_WH_URL!,
   },
   // GOOGLE GEMINI
   GEMINI_API_KEY: process.env.GEMINI_API_KEY!,
+  WATSONX_API_KEY: process.env.WATSONX_API_KEY!,
   TWILIO: {
     // test account
     TEST_ACCT_SID: process.env.TW_TEST_ACCT_SID!,
