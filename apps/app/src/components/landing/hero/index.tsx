@@ -38,7 +38,7 @@ export default function Hero() {
               }}
               className="text-3xl md:text-5xl font-ppB text-wrap text-white-100 whitespace-nowrap mb-3"
             >
-              Redefine Efficient and Secure Communication with Nexus
+              Redefine Efficient and Secure Communication with Sphera
             </motion.h1>
             <motion.p
               variants={{
