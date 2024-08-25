@@ -4,6 +4,7 @@ import {
   DEFAULT_SA_CALL_INTENTS,
 } from "../data/agent/config.js";
 import GeminiService from "./gemini.service.js";
+import WatsonService from "./watsonx.service.js";
 import type { AgentType } from "../types/index.js";
 import {
   antiTheftInstructionPrompt,
@@ -56,6 +57,7 @@ type ProcessAIRequestResponse = {
 
 export default class AIService {
   private geminiService = new GeminiService();
+  private watsonService = new WatsonService();
   private callLogService = new CallLogsService();
   private integrationService = new IntegrationService();
   private bgJobService = new BackgroundJobService();
