@@ -1,6 +1,6 @@
 import { FlexColCenter, FlexColStart, FlexRowCenter } from "@/components/Flex";
 import Modal from "@/components/Modal";
-import useSession from "@/hooks/useSession";
+// import useSession from "@/hooks/useSession";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 export default function Hero() {
   const [modalOpen, setModalOpen] = useState(false);
   const visible = { opacity: 1, y: 0, transition: { duration: 0.5 } };
-  const { loading, user } = useSession();
+  // const { loading, user } = useSession();
 
   return (
     <div className="w-full h-full bg-dark-100 rounded-[20px] overflow-hidden relative mb-2">
@@ -60,7 +60,8 @@ export default function Hero() {
           >
             <FlexRowCenter className="mt-[1em] gap-9">
               <Link
-                to={!loading && !user ? "/auth" : "/dashboard"}
+                // to={!loading && !user ? "/auth" : "/dashboard"}
+                to={"/dashboard"}
                 className="w-auto px-5 bg-white-100 font-ppReg py-3 rounded-2xl scale-[.90] enableBounceEffect"
               >
                 Get Started

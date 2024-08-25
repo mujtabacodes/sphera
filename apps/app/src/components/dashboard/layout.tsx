@@ -1,4 +1,4 @@
-import withAuth from "@/lib/auth-helpers/withAuth";
+// import withAuth from "@/lib/auth-helpers/withAuth";
 import DashboardSidebar from "./sidebar";
 import { Outlet } from "react-router-dom";
 
@@ -15,4 +15,4 @@ function DashboardLayout() {
   );
 }
 
-export default withAuth(DashboardLayout);
+export default DashboardLayout;

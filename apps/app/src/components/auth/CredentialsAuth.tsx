@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { FlexColStart, FlexRowCenter, FlexRowStart } from "@/components/Flex";
 import Button from "@/components/ui/button";
