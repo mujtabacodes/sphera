@@ -1,10 +1,9 @@
 import { FlexColCenter, FlexColStart, FlexRowCenter } from "@/components/Flex";
-import { Link } from "@/components/icons";
 import Modal from "@/components/Modal";
-// import { Neobutton } from "@/components/ui/NeonButton";
 import useSession from "@/hooks/useSession";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Hero() {
   const [modalOpen, setModalOpen] = useState(false);
