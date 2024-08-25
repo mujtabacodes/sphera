@@ -2,20 +2,20 @@ import { FlexColStart, FlexColStartBtw, FlexRowStartCenter } from "../Flex";
 import { Boxes } from "../icons";
 
 const whySphera = [
-  {
-    name: "call-protection",
-    title: "Call Protection",
-    description:
-      "With Sphera, all unknown and scam calls are answered by our AI agents, runs series of questions with the caller, ensuring that you get only the calls that matter.",
-    img: "/assets/images/anti-theft-system.svg",
-  },
-  {
-    name: "sales",
-    title: "AI-enhanced Sales",
-    description:
-      "Sphera AI agents are trained to handle sales calls, they can answer questions, provide information, place customer appointments and even close deals.",
-    img: "/assets/images/help-desk.svg",
-  },
+  // {
+  //   name: "call-protection",
+  //   title: "Call Protection",
+  //   description:
+  //     "With Sphera, all unknown and scam calls are answered by our AI agents, runs series of questions with the caller, ensuring that you get only the calls that matter.",
+  //   img: "/assets/images/anti-theft-system.svg",
+  // },
+  // {
+  //   name: "sales",
+  //   title: "AI-enhanced Sales",
+  //   description:
+  //     "Sphera AI agents are trained to handle sales calls, they can answer questions, provide information, place customer appointments and even close deals.",
+  //   img: "/assets/images/help-desk.svg",
+  // },
   {
     name: "chatbot",
     title: "24/7 Chatbot Support",
@@ -36,12 +36,10 @@ export default function WhySphera() {
 
       <FlexColStart className="w-full">
         <h1 className="text-[3em] font-ppSB text-brown-102">
-          Secure Every Call, Close Every Deal
+        Secure Every Chat, Expand Your AI Knowledge Base
         </h1>
         <p className="text-brown-102 text-sm font-ppL max-w-[70%]">
-          Sphera delivers AI-enhanced sales with power of Gemini, call
-          protection, and round-the-clock customer support in a single,
-          streamlined platform.
+        Sphera enhances communication with AI-powered chat capabilities, secure data protection, and 24/7 customer support in a single, streamlined platform.
         </p>
       </FlexColStart>
 

@@ -126,6 +126,40 @@ pre {
 }
 
 .hero-button svg {
-  width: 15px;
-  height: 15px;
+  width: 1px;
+  height: 1px;
+}
+.neon-border {
+  position: relative;
+  padding: 10px 20px;
+  border-radius: 50px;
+  color: #fff;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid transparent;
+  /* background-image: linear-gradient(90deg, #ff00ff, #39ff14, #00ffff); */
+  background-clip: border-box;
+  box-shadow: 0 0 10px #39ff14, 0 0 20px #9ea09d, 0 0 30px #39ff14, 0 0 40px #39ff14, 0 0 50px #39ff14, 0 0 60px #39ff14, 0 0 70px #39ff14;
+  animation: neonBorder 2s linear infinite, glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes neonBorder {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 1px #14d0ff, 0 0 10px #39ff14, 0 0 15px #39ff14, 0 0 20px #39ff14, 0 0 25px #39ff14, 0 0 30px #39ff14, 0 0 35px #39ff14;
+  }
+  100% {
+    box-shadow: 0 0 5px #39ff14, 0 0 30px #39ff14, 0 0 40px #39ff14, 0 0 50px #39ff14, 0 0 60px #39ff14, 0 0 70px #39ff14, 0 0 80px #39ff14;
+  }
 }

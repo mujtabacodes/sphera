@@ -22,13 +22,13 @@ const features = [
       "Empower your customer support with a dynamic, easily updatable knowledge base. Ensure consistent, accurate responses to customer inquiries, even outside of business hours.",
     video: "https://trynexusai.imgix.net/assets/videos/add-kb-prev.mp4",
   },
-  {
-    name: "add-integration",
-    title: "Seamless Third-Party Integrations",
-    description:
-      "Streamline your operations by integrating with a wide range of industry-leading tools and services. Our flexible API enables custom connections, creating a cohesive ecosystem tailored to your business needs.",
-    video: "https://trynexusai.imgix.net/assets/videos/add-int-prev.mp4",
-  },
+  // {
+  //   name: "add-integration",
+  //   title: "Seamless Third-Party Integrations",
+  //   description:
+  //     "Streamline your operations by integrating with a wide range of industry-leading tools and services. Our flexible API enables custom connections, creating a cohesive ecosystem tailored to your business needs.",
+  //   video: "https://trynexusai.imgix.net/assets/videos/add-int-prev.mp4",
+  // },
   {
     name: "telegram-integration",
     title: "Enhanced Customer Engagement with Telegram",
@@ -36,14 +36,14 @@ const features = [
       "Expand your customer engagement channels with Telegram integration. Provide a seamless experience for your customers to interact with your business through Telegram.",
     video: "https://trynexusai.imgix.net/assets/videos/tg-int.mp4",
   },
-  {
-    name: "monitor-call-logs",
-    title: "Advanced Call Log Analysis and Insights",
-    description:
-      "Gain valuable insights from agent-customer interactions with our sophisticated call log monitoring system. Analyze conversation patterns, identify areas for improvement, and refine your customer engagement strategies.",
-    video:
-      "https://trynexusai.imgix.net/assets/videos/monitor-call-log-prev.mp4",
-  },
+  // {
+  //   name: "monitor-call-logs",
+  //   title: "Advanced Call Log Analysis and Insights",
+  //   description:
+  //     "Gain valuable insights from agent-customer interactions with our sophisticated call log monitoring system. Analyze conversation patterns, identify areas for improvement, and refine your customer engagement strategies.",
+  //   video:
+  //     "https://trynexusai.imgix.net/assets/videos/monitor-call-log-prev.mp4",
+  // },
   {
     name: "chatbot",
     title: "24/7 Intelligent Customer Support",

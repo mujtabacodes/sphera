@@ -4,7 +4,7 @@ export default function NexusTradeMark() {
       <p className="text-xs font-ppReg text-white-400/40">Powered by</p>
       <img
         width={60}
-        src={"/assets/images/logos/nexus-logo-2.svg"}
+        src={"/assets/images/logos/ai-sphera.png"}
         className="rounded-full opacity-[.5] hover:opacity-100"
       />
     </div>

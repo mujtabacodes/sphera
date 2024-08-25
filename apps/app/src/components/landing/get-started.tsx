@@ -16,11 +16,11 @@ export default function GetStarted() {
           <h1 className="text-3xl md:text-5xl w-full lg:max-w-[50%] md:max-w-[70%] font-ppB text-wrap text-white-100 whitespace-nowrap mb-3">
             Maximize Safety, Maximize Profit
           </h1>
-          <p className="text-sm font-ppL text-white-300">
+          {/* <p className="text-sm font-ppL text-white-300">
             Sphera enables businesses to transform communication by boosting
             sales with intelligent AI assistants, securing calls from scammers,
             and offering 24/7 support via chatbots.
-          </p>
+          </p> */}
         </FlexColCenter>
         <FlexRowCenter className="mt-[1em] gap-9">
           <Link

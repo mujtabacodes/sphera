@@ -472,7 +472,7 @@ export default function Appearance({ agent_id, type }: AppearanceProps) {
             </FlexRowStartCenter>
             <FlexRowCenter className="w-full py-3">
               <p className="text-white-400 text-xs font-ppReg">Powered by</p>
-              <img width={70} src="/assets/logo/nexus-logo-2.svg" />
+              <img width={70} src="/assets/logo/ai-sphera.png" />
             </FlexRowCenter>
           </FlexColCenter>
         </FlexColStart>

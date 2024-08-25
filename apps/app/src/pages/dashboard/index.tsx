@@ -628,7 +628,7 @@ function SentimentCard() {
 
   const tabs = [
     { name: "conversations", title: "Conversations" },
-    { name: "call-logs", title: "Call Logs" },
+    // { name: "call-logs", title: "Call Logs" },
   ];
 
   const indicators = [
