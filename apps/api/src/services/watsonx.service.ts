@@ -47,12 +47,14 @@ export default class WatsonXService {
     // console.log(modelList);
         
     const chunkText = await this.chunkText(data);
-    const result = [] as { embedding: number[]; content: string }[];
+    const result = [] ;
+    // const result = [] as { embedding: number[]; content: string }[];
+
 // model- ibm/granite-13b-chat-v2
     for (const chunk of chunkText) {
             const params = {
                 input: chunk,
-                modelId: EmbeddingTypes.IBM_SLATE_30M_ENG, // Replace with the actual WatsonX embedding model ID
+                modelId: EmbeddingTypes.IBM_SLATE_30M_ENG.value, // Replace with the actual WatsonX embedding model ID
                 projectId: env.WATSONX_PROJECT_ID,
                 spaceId: "False",
                 parameters: {
@@ -84,7 +86,7 @@ export default class WatsonXService {
 
         const splitter = new RecursiveCharacterTextSplitter({
             chunkSize: 1000, // max characters per chunk
-            chunkOverlap: 150, // overlap between chunks
+            chunkOverlap: 0, // overlap between chunks
         });
 
         const tokens = await splitter.splitText(data as any);
@@ -97,17 +99,17 @@ export default class WatsonXService {
             data: null,
         };
 
-
+// ibm/granite-13b-chat-v2
         try {
             const model_params = {
                 input: props.prompt,
-                modelId: 'ibm/granite-13b-chat-v2', // Replace with the actual WatsonX function calling model ID
+                modelId: 'ibm/granite-13b-chat', // Replace with the actual WatsonX function calling model ID
                 projectId: env.WATSONX_PROJECT_ID,
                 parameters: {
                     max_new_tokens: 1000,
                     temperature:0.1,
-                    top_k:30,
-                    top_p:0.95,
+                    // top_k:30,
+                    // top_p:0.95,
                 },
                 spaceId: 'False',
             };

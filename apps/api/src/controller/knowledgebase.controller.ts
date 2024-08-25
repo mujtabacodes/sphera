@@ -13,6 +13,7 @@ import {
   unlinkKbSchema,
 } from "../lib/schema_validation.js";
 import GeminiService from "../services/gemini.service.js";
+import WatsonService from "../services/watsonx.service.js";
 import shortUUID from "short-uuid";
 import prisma from "../prisma/prisma.js";
 import sendResponse from "../lib/sendResponse.js";
