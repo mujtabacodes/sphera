@@ -13,7 +13,8 @@ import prisma from "../prisma/prisma.js";
 import HttpException from "../lib/exception.js";
 import AIService from "../services/AI.service.js";
 import { generalCustomerSupportTemplatePrompt } from "../data/agent/prompt.js";
-import GeminiService from "../services/gemini.service.js";
+// import GeminiService from "../services/gemini.service.js";
+import WatsonService from "../services/gemini.service.js";
 import logger from "../config/logger.js";
 import env from "../config/env.js";
 import sendMail from "../helpers/sendMail.js";
@@ -22,7 +23,7 @@ import retry from "../lib/retry.js";
 export default class ConversationController {
   private conversationService = new ConversationService();
   private aiService = new AIService();
-  private geminiService = new GeminiService();
+  private geminiService = new WatsonService();
   constructor() {}
 
   private async getLastMessage(convId: string) {

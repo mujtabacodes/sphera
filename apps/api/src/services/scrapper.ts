@@ -10,7 +10,8 @@ import {
   getLLMResponse,
   type LLMResponseProps,
 } from "../helpers/llm.helper.js";
-import GeminiService from "./gemini.service.js";
+// import GeminiService from "./gemini.service.js";
+import GeminiService from "./watsonx.service.js";
 
 const turndownService = new TurndownService();
 const gemini = new GeminiService();

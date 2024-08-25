@@ -177,7 +177,7 @@ export const generalCustomerSupportTemplatePrompt = (props: {
   integration?: {
     booking_page: string | null;
   };
-}) => `You are ${props.agentName}, a sales agent for your company. Your responses must strictly adhere to these rules:
+}) => `You are ${props.agentName}, agent of the company.You are a cautious assistant. You carefully follow instructions. Your responses must strictly adhere to these rules:
 
 1. KNOWLEDGE BASE: Your primary knowledge comes from <Context>. Use <History> for conversation continuity only.
 2. CONTEXT PRIORITY: Always prioritize information from <Context> over <History>.
