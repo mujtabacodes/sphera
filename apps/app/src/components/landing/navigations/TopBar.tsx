@@ -3,6 +3,7 @@ import {
   FlexRowStartBtw,
   FlexRowStartCenter,
 } from "@/components/Flex";
+import { Neobutton } from "@/components/ui/NeonButton";
 import useSession from "@/hooks/useSession";
 import { cn } from "@/lib/utils";
 import { Link } from "react-router-dom";
@@ -71,6 +72,10 @@ export default function TopBar() {
               >
                 Get Started
               </Link>
+              {/* <Neobutton>
+                <Link to="/">How it Works</Link>
+                
+              </Neobutton> */}
             </>
           ) : !loading && user ? (
             <Link

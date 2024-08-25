@@ -1,9 +1,10 @@
 import { FlexColCenter, FlexColStart, FlexRowCenter } from "@/components/Flex";
+import { Link } from "@/components/icons";
 import Modal from "@/components/Modal";
+// import { Neobutton } from "@/components/ui/NeonButton";
 import useSession from "@/hooks/useSession";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 
 export default function Hero() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -73,6 +74,7 @@ export default function Hero() {
               >
                 How it Works
               </button>
+             
             </FlexRowCenter>
           </motion.div>
           <motion.div
@@ -106,11 +108,10 @@ export default function Hero() {
             height="600"
             src="https://www.youtube.com/embed/kgVcDrm5Zr4?si=SC10PlteRAXH46h_"
             title="YouTube video player"
-            // @ts-ignore
-            frameborder="0"
+            frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
             className="rounded-[20px]"
           ></iframe>
         </FlexColStart>
