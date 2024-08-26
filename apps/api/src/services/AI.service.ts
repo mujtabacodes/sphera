@@ -3,8 +3,13 @@ import {
   DEFAULT_CALL_INTENTS,
   DEFAULT_SA_CALL_INTENTS,
 } from "../data/agent/config.js";
+<<<<<<< HEAD
 // import GeminiService from "./gemini.service.js";
 import WatsonService from "./gemini.service.js";
+=======
+import GeminiService from "./gemini.service.js";
+import WatsonService from "./watsonx.service.js";
+>>>>>>> d875d8160f75de20e660926ef4ea9e4f91367f94
 import type { AgentType } from "../types/index.js";
 import {
   antiTheftInstructionPrompt,
@@ -56,7 +61,11 @@ type ProcessAIRequestResponse = {
 };
 
 export default class AIService {
+<<<<<<< HEAD
   private geminiService = new WatsonService();
+=======
+  private geminiService = new GeminiService();
+>>>>>>> d875d8160f75de20e660926ef4ea9e4f91367f94
   private watsonService = new WatsonService();
   private callLogService = new CallLogsService();
   private integrationService = new IntegrationService();

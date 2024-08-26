@@ -105,6 +105,19 @@ export default class GeminiService {
     // Split the text into chunks
     // getting rid of any text overlaps
     // for eg "testing" -> "test", "ing"
+  //   separators=[
+  //     "\n\n",
+  //     "\n",
+  //     " ",
+  //     ".",
+  //     ",",
+  //     "\u200b",  # Zero-width space
+  //     "\uff0c",  # Fullwidth comma
+  //     "\u3001",  # Ideographic comma
+  //     "\uff0e",  # Fullwidth full stop
+  //     "\u3002",  # Ideographic full stop
+  //     "",
+  // ],
     const splitter = new RecursiveCharacterTextSplitter({
       chunkSize: 1000, // max characters per chunk
       chunkOverlap: 150, // overlap between chunks
