@@ -1,10 +1,10 @@
 import type { IFunctionCallResp } from "../types/agent.types.js";
 import {
-  DEFAULT_CALL_INTENTS,
+  // DEFAULT_CALL_INTENTS,
   DEFAULT_SA_CALL_INTENTS,
 } from "../data/agent/config.js";
 import GeminiService from "./gemini.service.js";
-import WatsonService from "./watsonx.service.js";
+// import WatsonService from "./watsonx.service.js";
 import type { AgentType } from "../types/index.js";
 import {
   antiTheftInstructionPrompt,
@@ -57,46 +57,48 @@ type ProcessAIRequestResponse = {
 
 export default class AIService {
   private geminiService = new GeminiService();
-  private watsonService = new WatsonService();
+  // private watsonService = new WatsonService();
   private callLogService = new CallLogsService();
   private integrationService = new IntegrationService();
   private bgJobService = new BackgroundJobService();
 
-  public async determineCallIntent(msg: string, call_history?: string) {
-    const intentCallResp = await this.geminiService.functionCall({
-      prompt: msg,
-      tools: [
-        {
-          func_name: "determine_call_intent",
-          description: `Identify call intent or action from the given prompt. Actions must be returned in one word, all caps, and underscored Note: the action can only be one of the following: 
-          ${DEFAULT_CALL_INTENTS.join(", ")}.
+  // public async determineCallIntent(msg: string, call_history?: string) {
+  //   const intentCallResp = await this.geminiService.functionCall({
+  //     prompt: msg,
+  //     tools: [
+  //       {
+  //         func_name: "determine_call_intent",
+  //         description: `Identify call intent or action from the given prompt. Actions must be returned in one word, all caps, and underscored Note: the action can only be one of the following: 
+  //         ${DEFAULT_CALL_INTENTS.join(", ")}.
 
           
-          <UserPrompt>${msg}</UserPrompt>
+  //         <UserPrompt>${msg}</UserPrompt>
 
-          <CallHistory>
-            ${call_history ?? "N/A"}
-          </CallHistory>
-          `,
-          parameters: {
-            type: "object",
-            properties: {
-              // @ts-expect-error
-              action: {
-                type: "string",
-                description: `The user request action gotten from the prompt, supported actions/intents are ${DEFAULT_CALL_INTENTS.join(
-                  ""
-                )}`,
-              },
-            },
-          },
-          required: ["action"],
-        },
-      ],
-    });
+  //         <CallHistory>
+  //           ${call_history ?? "N/A"}
+  //         </CallHistory>
+  //         `,
+  //         parameters: {
+  //           type: "object",
+  //           properties: {   
 
-    return intentCallResp.data as IFunctionCallResp[];
-  }
+  //             // the error thing is here- // @ts-expect-error
+              
+  //             action: {
+  //               type: "string",
+  //               description: `The user request action gotten from the prompt, supported actions/intents are ${DEFAULT_CALL_INTENTS.join(
+  //                 ""
+  //               )}`,
+  //             },
+  //           },
+  //         },
+  //         required: ["action"],
+  //       },
+  //     ],
+  //   });
+
+  //   return intentCallResp.data as IFunctionCallResp[];
+  // }
 
   public async getCallReason(msg: string, callerName: string) {
     const callReason = await this.geminiService.functionCall({
@@ -319,6 +321,7 @@ export default class AIService {
   // determine if the user needs further requests based on follow-up message
   public async determineFurtherRequest(msg: string) {
     const furtherRequest = await this.geminiService.functionCall({
+      // const furtherRequest = await this.watsonService.functionCall({
       prompt: msg,
       tools: [
         {
@@ -440,6 +443,7 @@ export default class AIService {
     const cachedEmbedding = await redis.get(user_input);
 
     if (!cachedEmbedding) {
+      // userMsgEmbedding = await this.geminiService.generateEmbedding(user_input);
       userMsgEmbedding = await this.geminiService.generateEmbedding(user_input);
       await redis.set(
         user_input,
