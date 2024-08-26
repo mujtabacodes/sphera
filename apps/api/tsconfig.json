@@ -29,6 +29,7 @@
   },
   "include": [
     "./**/*",
+    "src",
     "src/**/*.ts",
     "./src/**/*",
     "./src/config/*.json",

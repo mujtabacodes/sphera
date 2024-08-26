@@ -4,7 +4,7 @@ import {
   DEFAULT_SA_CALL_INTENTS,
 } from "../data/agent/config.js";
 // import GeminiService from "./gemini.service.js";
-import WatsonService from "./watsonx.service.js";
+import WatsonService from "./gemini.service.js";
 import type { AgentType } from "../types/index.js";
 import {
   antiTheftInstructionPrompt,
@@ -62,43 +62,43 @@ export default class AIService {
   private integrationService = new IntegrationService();
   private bgJobService = new BackgroundJobService();
 
-  public async determineCallIntent(msg: string, call_history?: string) {
-    const intentCallResp = await this.geminiService.functionCall({
-      prompt: msg,
-      tools: [
-        {
-          func_name: "determine_call_intent",
-          description: `Identify call intent or action from the given prompt. Actions must be returned in one word, all caps, and underscored Note: the action can only be one of the following: 
-          ${DEFAULT_CALL_INTENTS.join(", ")}.
+  // public async determineCallIntent(msg: string, call_history?: string) {
+  //   const intentCallResp = await this.geminiService.functionCall({
+  //     prompt: msg,
+  //     tools: [
+  //       {
+  //         func_name: "determine_call_intent",
+  //         description: `Identify call intent or action from the given prompt. Actions must be returned in one word, all caps, and underscored Note: the action can only be one of the following: 
+  //         ${DEFAULT_CALL_INTENTS.join(", ")}.
 
           
-          <UserPrompt>${msg}</UserPrompt>
+  //         <UserPrompt>${msg}</UserPrompt>
 
-          <CallHistory>
-            ${call_history ?? "N/A"}
-          </CallHistory>
-          `,
-          parameters: {
-            type: "object",
-            properties: {   
+  //         <CallHistory>
+  //           ${call_history ?? "N/A"}
+  //         </CallHistory>
+  //         `,
+  //         parameters: {
+  //           type: "object",
+  //           properties: {   
 
-              // the error thing is here- // @ts-expect-error
+  //             // the error thing is here- // @ts-expect-error
               
-              action: {
-                type: "string",
-                description: `The user request action gotten from the prompt, supported actions/intents are ${DEFAULT_CALL_INTENTS.join(
-                  ""
-                )}`,
-              },
-            },
-          },
-          required: ["action"],
-        },
-      ],
-    });
+  //             action: {
+  //               type: "string",
+  //               description: `The user request action gotten from the prompt, supported actions/intents are ${DEFAULT_CALL_INTENTS.join(
+  //                 ""
+  //               )}`,
+  //             },
+  //           },
+  //         },
+  //         required: ["action"],
+  //       },
+  //     ],
+  //   });
 
-    return intentCallResp.data as IFunctionCallResp[];
-  }
+  //   return intentCallResp.data as IFunctionCallResp[];
+  // }
 
   public async getCallReason(msg: string, callerName: string) {
     const callReason = await this.geminiService.functionCall({

@@ -12,11 +12,50 @@ import { RESPONSE_CODE, type AgentType } from "../types/index.js";
 import type { FunctionCallingNames } from "../types/agent.types.js";
 import type { ICallAIProps, IFunctionCall } from "../types/gemini.types.js";
 
+import { IamAuthenticator } from 'ibm-cloud-sdk-core';
+
+// const { WatsonXAI } = require('@ibm-cloud/watsonx-ai');
+import { WatsonXAI } from '@ibm-cloud/watsonx-ai';
+
+// import ModelTypes from "ibm_watsonx_ai.foundation_models.utils.enums"
+// import EmbeddingTypes from 'ibm_watsonx_ai.foundation_models.embeddings'
+// import EmbedTextParamsMetaNames from ibm_watsonx_ai.metanames 
+// import EmbeddingTypes from '@ibm-cloud/watsonx-ai' 
+// import Embeddings from '@ibm-cloud/watsonx-ai' 
+// import { WatsonxAI } from "@langchain/community/llms/watsonx_ai.js";
+
+let watsonxAIService;
+
+// const authenticator = new IamAuthenticator({
+//   apikey: env.WATSONX_API_KEY,
+//   url: env.WATSONX_URL, 
+// });
+
+// const options = {
+//   authenticator,
+//   // version: '2024-05-31',
+// };
+
+// authenticator: new IamAuthenticator({ apikey: env.WATSONX_API_KEY }),
+
 export default class GeminiService {
   private genAI: GoogleGenerativeAI;
-  // private cacheManager: GoogleAIC
+  // public watsonxAIService: WatsonxAI;
   constructor() {
     this.genAI = new GoogleGenerativeAI(env.GEMINI_API_KEY);
+  //   this.watsonxAIService = new WatsonxAI({
+  //     ibmCloudApiKey: env.WATSONX_API_KEY,
+  //       projectId: env.WATSONX_PROJECT_ID,
+  //       // apiKey: env.WATSONX_API_KEY,
+  // });
+    watsonxAIService = WatsonXAI.newInstance({
+         authenticator: new IamAuthenticator({ apikey: env.WATSONX_API_KEY }),
+         version:'2024.02.15',
+         serviceUrl: env.WATSONX_URL,    
+    });
+
+
+//  const model_id = ModelTypes.GRANITE_13B_CHAT_V2
   }
 
   public async generateEmbedding(data: string) {
@@ -27,19 +66,36 @@ export default class GeminiService {
 
     console.log("debug 1")
   
-    
-    const model = this.genAI.getGenerativeModel({ model: "embedding-001" });
+
+    // const model = this.genAI.getGenerativeModel({ model: "embedding-001" });
     const chunkText = await this.chunkText(data);
     const result = [] as { embedding: number[]; content: string }[];
+    // const result = [];
     for (const chunk of chunkText) {
-      const { embedding } = await model.embedContent(chunk);
+      const params = {
+        inputs: chunk,
+        modelId: 'slate-30m-english-rtrvr-v2', // Replace with the actual WatsonX embedding model ID EmbeddingTypes.IBM_SLATE_30M_ENG.value, 
+        projectId: env.WATSONX_PROJECT_ID,
+        spaceId: "False",
+        parameters: {
+            max_new_tokens: 100,
+            temperature: 0.1 // Adjust parameters as needed for embedding
+        },
+    };
+    
+      // const { embedding } = await model.embedContent(chunk);
+      // const response = await watsonxAIService.Embeddings(params)
+      const response = await watsonxAIService.embedText(params)
+      const embedding_vector = response.result.results
       result.push({
         content: chunk,
-        embedding: embedding.values,
+        // embedding: embedding.values,
+        embedding:embedding_vector,
       });
     }
     return result;
   }
+
 
   public async chunkText(data: string) {
     if (!data) {
