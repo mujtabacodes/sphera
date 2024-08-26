@@ -9,13 +9,14 @@ import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import logger from "../config/logger.js";
 import HttpException from "../lib/exception.js";
 import { RESPONSE_CODE, type AgentType } from "../types/index.js";
-import type { FunctionCallingNames } from "../types/agent.types.js";
+// import type { FunctionCallingNames } from "../types/agent.types.js";
 import type { ICallAIProps, IFunctionCall } from "../types/gemini.types.js";
 
 import { IamAuthenticator } from 'ibm-cloud-sdk-core';
 
 // const { WatsonXAI } = require('@ibm-cloud/watsonx-ai');
 import { WatsonXAI } from '@ibm-cloud/watsonx-ai';
+// import
 
 // import ModelTypes from "ibm_watsonx_ai.foundation_models.utils.enums"
 // import EmbeddingTypes from 'ibm_watsonx_ai.foundation_models.embeddings'
@@ -24,7 +25,7 @@ import { WatsonXAI } from '@ibm-cloud/watsonx-ai';
 // import Embeddings from '@ibm-cloud/watsonx-ai' 
 // import { WatsonxAI } from "@langchain/community/llms/watsonx_ai.js";
 
-let watsonxAIService;
+// let watsonxAIService;
 
 // const authenticator = new IamAuthenticator({
 //   apikey: env.WATSONX_API_KEY,
@@ -39,20 +40,28 @@ let watsonxAIService;
 // authenticator: new IamAuthenticator({ apikey: env.WATSONX_API_KEY }),
 
 export default class GeminiService {
+  
   private genAI: GoogleGenerativeAI;
-  // public watsonxAIService: WatsonxAI;
+  public watsonxAIService: WatsonXAI;
   constructor() {
+
     this.genAI = new GoogleGenerativeAI(env.GEMINI_API_KEY);
   //   this.watsonxAIService = new WatsonxAI({
   //     ibmCloudApiKey: env.WATSONX_API_KEY,
   //       projectId: env.WATSONX_PROJECT_ID,
   //       // apiKey: env.WATSONX_API_KEY,
   // });
-    watsonxAIService = WatsonXAI.newInstance({
-         authenticator: new IamAuthenticator({ apikey: env.WATSONX_API_KEY }),
-         version:'2024.02.15',
-         serviceUrl: env.WATSONX_URL,    
-    });
+    // try {
+      this.watsonxAIService = WatsonXAI.newInstance({
+        authenticator: new IamAuthenticator({ apikey: 'cpd-apikey-IBMid-698000INM6-2024-08-24T19:46:48Z' }),
+        version:'2024-05-31',
+        serviceUrl: env.WATSONX_URL, 
+   });
+      
+    // } catch (error) {
+    //   console.log("Auth api_error");
+    //   console.log(error)
+    // }
 
 
 //  const model_id = ModelTypes.GRANITE_13B_CHAT_V2
@@ -60,32 +69,49 @@ export default class GeminiService {
 
   public async generateEmbedding(data: string) {
     if (!data) {
-      // throw new Error("Data is required");
-      data = "Hello there.";
+      throw new Error("Data is required");
+      // data = "Hello there.";
     }
 
     console.log("debug 1")
   
 
     // const model = this.genAI.getGenerativeModel({ model: "embedding-001" });
+  //   const embed_params = {
+  //     EmbedTextParamsMetaNames.TRUNCATE_INPUT_TOKENS: 3,
+  //     EmbedTextParamsMetaNames.RETURN_OPTIONS: {"input_text": True},
+  // } 
+// Get available embedding models
+    const listModelParams = {
+        'filters': "function_embedding"
+      }
+
+    const listModels = await this.watsonxAIService.listFoundationModelSpecs(listModelParams)
+    const modelList = listModels.result.resources.map(model => model.model_id);
+    console.log("\n\n***** LIST OF AVAILABLE EMBEDDING MODELS *****");
+    console.log(modelList);
+
+// Get two first available embedding models
+    const model_emb = modelList[0];
     const chunkText = await this.chunkText(data);
-    const result = [] as { embedding: number[]; content: string }[];
-    // const result = [];
+    // const result = [] as { embedding: number[]; content: string }[];
+    const result = [];
     for (const chunk of chunkText) {
       const params = {
-        inputs: chunk,
-        modelId: 'slate-30m-english-rtrvr-v2', // Replace with the actual WatsonX embedding model ID EmbeddingTypes.IBM_SLATE_30M_ENG.value, 
+        inputs: [chunk],
+        // modelId: model_emb,
+        modelId: 'slate-30m-english-rtrvr-v2',  // Replace with the actual WatsonX embedding model ID EmbeddingTypes.IBM_SLATE_30M_ENG.value, 
         projectId: env.WATSONX_PROJECT_ID,
         spaceId: "False",
-        parameters: {
-            max_new_tokens: 100,
-            temperature: 0.1 // Adjust parameters as needed for embedding
-        },
+        // parameters: {
+        //     max_new_tokens: 100,
+        //     temperature: 0.1 // Adjust parameters as needed for embedding
+        // },
     };
     
       // const { embedding } = await model.embedContent(chunk);
       // const response = await watsonxAIService.Embeddings(params)
-      const response = await watsonxAIService.embedText(params)
+      const response = await this.watsonxAIService.embedText(params)
       const embedding_vector = response.result.results
       result.push({
         content: chunk,
@@ -93,9 +119,10 @@ export default class GeminiService {
         embedding:embedding_vector,
       });
     }
+    console.log(result)
     return result;
   }
-
+    
 
   public async chunkText(data: string) {
     if (!data) {
@@ -140,7 +167,7 @@ export default class GeminiService {
           {
             // @ts-expect-error
             functionDeclarations: props.tools.map((t) => ({
-              name: t.func_name as FunctionCallingNames,
+              // name: t.func_name as FunctionCallingNames,
               description: t.description,
               parameters: {
                 type: t.parameters.type as FunctionDeclarationSchemaType,
@@ -155,15 +182,18 @@ export default class GeminiService {
       const chat = generativeModel.startChat();
       // Send the message to the model.
       const result = await chat.sendMessage(props.prompt!);
+      // const model_response = model.invoke(props.prompt)
 
       // For simplicity, this uses the first function call found.
       const call = result.response.functionCalls();
+      
 
       logger.info("Function call:");
       logger.info(result.response.usageMetadata);
 
       resp.data = call;
       return resp;
+
     } catch (e: any) {
       logger.error("Error calling AI function", e);
       resp.error = e;
@@ -175,22 +205,6 @@ export default class GeminiService {
     }
   }
 
-  private constructChatHistory(
-    data: { userPrompt: string; aiPrompt: string }[]
-  ) {
-    const history = [] as { role: string; parts: { text: string }[] }[];
-    for (const d of data) {
-      history.push({
-        role: "user",
-        parts: [{ text: d.userPrompt }],
-      });
-      history.push({
-        role: "system",
-        parts: [{ text: d.aiPrompt }],
-      });
-    }
-    return history;
-  }
 
   // Call GEMINI AI to handle user's conversation
   public async callAI(props: ICallAIProps) {
@@ -230,5 +244,4 @@ export default class GeminiService {
     }
   }
 
-  public async similaritySearch() {}
 }

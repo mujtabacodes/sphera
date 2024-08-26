@@ -1,6 +1,6 @@
 import type { IFunctionCallResp } from "../types/agent.types.js";
 import {
-  DEFAULT_CALL_INTENTS,
+  // DEFAULT_CALL_INTENTS,
   DEFAULT_SA_CALL_INTENTS,
 } from "../data/agent/config.js";
 import GeminiService from "./gemini.service.js";
