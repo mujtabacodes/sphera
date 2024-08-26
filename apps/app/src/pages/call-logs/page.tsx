@@ -171,14 +171,28 @@ export default function CallLogsPage() {
       {/* call logs */}
       <FlexColStart className="w-full h-screen border-r-[.5px] border-r-white-400 bg-white-100 px-4 py-6 ">
         {/* header */}
-        <FlexColStart className="w-full gap-1">
+        {/* <FlexColStart className="w-full gap-1">
           <h1 className="font-ppB text-lg font-bold text-dark-100">
             Call Logs
           </h1>
           <p className="font-ppReg text-xs font-normal text-white-400/80">
             View all call logs and their details
           </p>
-        </FlexColStart>
+        </FlexColStart> {/* <FlexColStart className="w-full gap-1">
+          <h1 className="font-ppB text-lg font-bold text-dark-100">
+            Call Logs
+          </h1>
+          <p className="font-ppReg text-xs font-normal text-white-400/80">
+            View all call logs and their details
+          </p>
+        </FlexColStart> {/* <FlexColStart className="w-full gap-1">
+          <h1 className="font-ppB text-lg font-bold text-dark-100">
+            Call Logs
+          </h1>
+          <p className="font-ppReg text-xs font-normal text-white-400/80">
+            View all call logs and their details
+          </p>
+        </FlexColStart> */}
 
         <br />
 

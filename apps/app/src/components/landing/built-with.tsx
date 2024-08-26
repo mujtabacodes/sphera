@@ -2,11 +2,13 @@ import { cn } from "@/lib/utils";
 import { FlexColCenter, FlexRowCenter } from "../Flex";
 
 const technologies = [
-  { name: "gemini", path: "/assets/images/logo/gemini.svg" },
+  { name: "IBM watsonx", path: "/assets/images/logo/watsonx.png" },
+  // { name: "gemini", path: "/assets/images/logo/gemini.svg" },
   { name: "firebase", path: "/assets/images/logo/firebase.svg" },
   { name: "twilio", path: "/assets/images/logo/twilio.svg" },
   { name: "xilab", path: "/assets/images/logo/xilab.svg" },
   { name: "neon", path: "/assets/images/logo/neon.svg" },
+  { name: "prisma", path: "/assets/images/logo/prisma-logo.png" },
 ];
 
 export default function BuiltWith() {

@@ -28,13 +28,13 @@ const sidebarRoutes = [
     path: "/dashboard",
     isExtensible: false,
   },
-  {
-    title: "Call logs",
-    key: "call-logs",
-    path: "/call-logs",
-    isExtensible: false,
-    notification: true,
-  },
+  // {
+  //   title: "Call logs",
+  //   key: "call-logs",
+  //   path: "/call-logs",
+  //   isExtensible: false,
+  //   notification: true,
+  // },
   {
     title: "Inbox",
     key: "inbox",
@@ -62,12 +62,12 @@ export default function DashboardSidebar() {
   }, [pathname]);
 
   return (
-    <div className="w-full h-screen bg-brown-100 py-5 px-3">
+    <div className="w-full h-screen bg-slate-900 py-5 px-3">
       <Popover>
         <PopoverTrigger className="w-full">
           <Button
             intent="tertiary"
-            className="bg-brown-102 outline outline-[1px] outline-white-400/50 w-full min-h-[50px] py-4 hover:bg-brown-102/90 rounded-md mb-2"
+            className=" outline outline-[1px] outline-white-400/50 w-full min-h-[50px] py-4 hover:bg-brown-102/90 rounded-md mb-2"
             childrenClass="w-full"
             rightIcon={<CaretSort size={15} />}
           >

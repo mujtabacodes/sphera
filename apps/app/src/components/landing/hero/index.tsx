@@ -1,4 +1,4 @@
-import { FlexColCenter, FlexColStart, FlexRowCenter } from "@/components/Flex";
+import { FlexColCenter, FlexRowCenter } from "@/components/Flex";
 import Modal from "@/components/Modal";
 import useSession from "@/hooks/useSession";
 import { motion } from "framer-motion";
@@ -11,11 +11,11 @@ export default function Hero() {
   const { loading, user } = useSession();
 
   return (
-    <div className="w-full h-full bg-dark-100 rounded-[20px] overflow-hidden relative mb-2">
+    <div className="w-full h-full bg-black rounded-[20px] overflow-hidden relative mb-2">
       <div className="pattern-bg absolute inset-0 z-0" />
 
       <FlexColCenter className="w-full h-[300px] absolute top-0">
-        <div className="w-[250px] h-[250px] bg-white-100 blur-[150px] rounded-full -translate-y-[10em]" />
+        <div className="w-[250px] h-[250px] bg-blue-100 blur-[150px] rounded-full -translate-y-[10em]" />
       </FlexColCenter>
 
       <div id="hero" />
@@ -47,9 +47,7 @@ export default function Hero() {
               }}
               className="text-sm font-ppL text-white-300"
             >
-              Sphera helps businesses and individuals to transform communication
-              by boosting sales with intelligent AI assistants, securing calls
-              from scammers, and offering 24/7 support all in one platform.
+             Sphera is an AI-driven enterprise chatbot that gives employees instant, accurate access to up-to-date company information using unique vector search technology. Seamlessly integrated across platforms, Sphera enhances internal communication and boosts operational efficiency.
             </motion.p>
           </FlexColCenter>
           <motion.div
@@ -81,13 +79,13 @@ export default function Hero() {
               visible,
             }}
           >
-            <FlexColCenter className="mt-[3em] mx-auto max-w-[90%] translate-y-10">
+            {/* <FlexColCenter className="mt-[3em] mx-auto max-w-[90%] translate-y-10">
               <img
                 src={`/assets/images/header/illus-4.svg?dpr=1`}
                 alt="hero"
                 className="w-full h-full object-left object-cover"
               />
-            </FlexColCenter>
+            </FlexColCenter> */}
           </motion.div>
         </FlexColCenter>
       </motion.div>
@@ -100,7 +98,7 @@ export default function Hero() {
           setModalOpen(false);
         }}
       >
-        <FlexColStart className="w-full h-full bg-white-300 rounded-[22px] px-2 py-2 gap-0">
+        {/* <FlexColStart className="w-full h-full bg-white-300 rounded-[22px] px-2 py-2 gap-0">
           <iframe
             width="900"
             height="600"
@@ -113,7 +111,7 @@ export default function Hero() {
             allowfullscreen
             className="rounded-[20px]"
           ></iframe>
-        </FlexColStart>
+        </FlexColStart> */}
       </Modal>
     </div>
   );
